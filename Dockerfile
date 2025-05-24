@@ -1,10 +1,10 @@
 FROM redmine:5.1
 
-# Instala dependencias adicionales si hiciera falta
-# RUN apt-get update && apt-get install -y <dependencias>
+# Instala adaptador PostgreSQL
+RUN apt-get update && apt-get install -y libpq-dev \
+    && gem install pg
 
-# Crea directorio de datos persistentes (Render montará aquí el volumen)
+# Crea volumen para archivos persistentes
 VOLUME /usr/src/redmine/files
 
-# Puerto por defecto
 EXPOSE 3000
