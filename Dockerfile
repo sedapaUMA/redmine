@@ -16,3 +16,4 @@ RUN apt-get update && \
 VOLUME /usr/src/redmine/files
 
 EXPOSE 3000
+
