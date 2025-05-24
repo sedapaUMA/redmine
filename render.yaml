@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: redmine
+    env: docker
+    plan: standard
+    disk:
+      name: redmine-data
+      mountPath: /usr/src/redmine/files
+      sizeGB: 1
