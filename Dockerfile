@@ -19,4 +19,5 @@ VOLUME /usr/src/redmine/files
 EXPOSE 3000
 
 # Arranca el servidor de Redmine
-CMD ["rails", "server", "-b", "0.0.0.0"]
+#CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bash", "-c", "bundle exec rails server -b 0.0.0.0 -p 3000"]
