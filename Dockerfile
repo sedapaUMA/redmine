@@ -1,6 +1,6 @@
 FROM redmine:5.1
 
-# Instala herramientas de compilación + librerías PostgreSQL
+# Instala dependencias necesarias para PostgreSQL
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         build-essential \
@@ -12,8 +12,11 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Crea volumen para persistencia de archivos
+# Crea volumen para archivos persistentes
 VOLUME /usr/src/redmine/files
 
+# Expone el puerto que usará el servidor
 EXPOSE 3000
 
+# Arranca el servidor de Redmine
+CMD ["rails", "server", "-b", "0.0.0.0"]
