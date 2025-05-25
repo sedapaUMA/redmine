@@ -12,8 +12,12 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Añade configuración de base de datos
+# Añadir configuración de base de datos
 COPY config/database.yml /usr/src/redmine/config/database.yml
 
-# Ejecuta migraciones y finaliza
-CMD ["bash", "-c", "RAILS_ENV=production bundle exec rails db:migrate"]
+# Crear volumen para archivos persistentes
+VOLUME /usr/src/redmine/files
+
+# Exponer puerto y lanzar el servidor
+EXPOSE 3000
+CMD ["bash", "-c", "RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000"]
