@@ -15,9 +15,8 @@ RUN apt-get update && \
 # Crea volumen para archivos persistentes
 VOLUME /usr/src/redmine/files
 
-# Expone el puerto que usará el servidor
+# Expone el puerto del servidor web
 EXPOSE 3000
 
-# Arranca el servidor de Redmine
-#CMD ["rails", "server", "-b", "0.0.0.0"]
-CMD ["bash", "-c", "bundle exec rails server -b 0.0.0.0 -p 3000"]
+# Comando explícito con entorno y logs
+CMD ["bash", "-c", "RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000"]
