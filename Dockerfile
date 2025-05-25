@@ -12,11 +12,12 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Crea volumen para archivos persistentes
+# Añadir configuración de base de datos
+COPY config/database.yml /usr/src/redmine/config/database.yml
+
+# Crear volumen para archivos persistentes
 VOLUME /usr/src/redmine/files
 
-# Expone el puerto del servidor web
+# Exponer puerto y lanzar el servidor
 EXPOSE 3000
-
-# Comando explícito con entorno y logs
 CMD ["bash", "-c", "RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000"]
